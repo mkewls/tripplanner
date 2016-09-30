@@ -1,11 +1,11 @@
 'use strict';
 
 var Sequelize = require('sequelize');
-var db = new Sequelize('postgres://postgres@localhost:5432/tripplanner', {
+var db = new Sequelize('postgres://localhost:5432/tripplanner', {
     logging: false
 });
 
-var Place = db.define('places', {
+var Place = db.define('place', {
     address: {
         type: Sequelize.STRING
     },
@@ -26,7 +26,7 @@ var Place = db.define('places', {
     }
 });
 
-var Hotel = db.define('hotels', {
+var Hotel = db.define('hotel', {
     name: {
         type: Sequelize.STRING
     },
@@ -40,7 +40,7 @@ var Hotel = db.define('hotels', {
     }
 });
 
-var Activity = db.define('activities', {
+var Activity = db.define('activity', {
     name: {
         type: Sequelize.STRING
     },
@@ -49,7 +49,7 @@ var Activity = db.define('activities', {
     }
 });
 
-var Restaurant = db.define('restaurants', {
+var Restaurant = db.define('restaurant', {
     name: {
         type: Sequelize.STRING
     },

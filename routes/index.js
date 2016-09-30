@@ -9,12 +9,8 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   Place.findAll({ include: [ Hotel,Activity,Restaurant ] }).then(function(places) {
-      console.log(places);
-      res.send(places);
-})
-  
-  
-  //res.render('index');
+    res.render('index', { places: places });
+  });
 });
 
 
