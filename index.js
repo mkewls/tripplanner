@@ -8,6 +8,14 @@ var path = require('path');
 var express = require('express');
 var app = new express();
 
+
+var models = require('./models');
+var Place = models.Place;
+var Hotel = models.Hotel;
+var Activity = models.Activity;
+var Restaurant = models.Restaurant;
+
+
 nunjucks.configure('views', { noCache: true });
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render);
@@ -20,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // html forms
 app.use(bodyParser.json());
 
 // server init
-app.listen(3000, function() { 
-  console.log('Listening on Port 3000'); 
-});
+//app.listen(3000, function() { 
+//  console.log('Listening on Port 3000'); 
+//});
 
 // open public dir
 app.use(express.static(path.join(__dirname, '/public')));
@@ -43,4 +51,19 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+Place.sync()
+    .then(function () {
+        return Hotel.sync();
+    })
+    .then(function () {
+        return Activity.sync();
+    })
+    .then(function () {
+        return Restaurant.sync();
+    })
+    .then(function () {
+        app.listen(3000, function () {
+            console.log('Server is listening on port 3000!');
+        });
+});
 
