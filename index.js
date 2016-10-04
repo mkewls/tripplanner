@@ -27,11 +27,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true })); // html forms
 app.use(bodyParser.json());
 
-// server init
-//app.listen(3000, function() { 
-//  console.log('Listening on Port 3000'); 
-//});
-
 // open public dir
 app.use(express.static(path.join(__dirname, '/public')));
 // use router
